@@ -1,0 +1,112 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global styles */
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.navbar {
+    background-color: #084f2d;
+    color: white;
+    padding: 10px;
+}
+
+.search-bar {
+    flex-grow: 1;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-right: 20px;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Product categories */
+.categories {
+    background-color: #a0e0d5;
+    padding: 10px;
+}
+
+.categories ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.categories ul li {
+    margin-right: 20px;
+}
+
+.categories ul li a {
+    color: #084f2d;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.categories ul li.active a {
+    color: #006d3a;
+}
+
+/* Product listings */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.product-card {
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+
+/* Store tabs styling */
+.store-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.store-tab {
+    background-color: #084f2d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.store-tab.active {
+    background-color: #006d3a;
+}
+
+.store-tab:not(:last-child) {
+    margin-right: 10px;
+}
+
+.store-tab:hover {
+    background-color: #006d3a;
+}

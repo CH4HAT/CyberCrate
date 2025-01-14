@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>Order ID: {{ id }}</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead class="thead-dark"> 
+                    <tr>
+                        <th>Customer Name</th>
+                        <th>Customer Balance</th>
+                        <th>Items ordered</th>
+                        <th>Estimated price</th>
+                        {% if processed %}
+                            <th>Order processed</th>
+                        {% endif %}
+                        <th>Customer details</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td>{{ order.name }}</td>
+                            <td>${{ order.balance }}</td>
+                            <td>
+                                {% for product in order.products %}
+                                    {{ product }}
+                                {% endfor %}
+                            </td>
+                            <td>${{ order.price }}</td>
+                            {% if order.processed %}
+                                <td>{{ order.processed }}</td>
+                            {% endif %}
+                            <td>
+                                <a href="{{ url_for('main.get_customer_by_id', id=order.customer_id) }}">Customer ID {{ order.customer_id }}</a>
+                            </td>
+                            <td>
+                                <form method="POST" action="{{ url_for('main.delete_order', id=order.customer_id) }}"> 
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

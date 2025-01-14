@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Orders</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead class="thead-dark"> 
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer ID</th>
+                        <th>Order Products</th>
+                        <th>Order Total</th>
+                        <th>Order Processed</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td> 
+                                <a href="{{ url_for('main.get_order_by_id', id=order.id) }}">{{ order.id }}</a> 
+                            </td>
+                            <td>
+                                <a href="{{ url_for('main.get_customer_by_id', id=order.customer_id) }}">{{ order.customer_id }}</a> 
+                            </td>
+                            <td>
+                                <ul>
+                                    {% for product in order.products %}
+                                        <li>{{ product }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                            <td>${{ order.total }}</td>
+                            <td>{{ order.processed }}</td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <form method="POST" action="{{ url_for('main.process_order', id=order.id) }}"> 
+                                        <button type="submit" class="btn btn-success btn-sm">Process</button>
+                                    </form>
+                                    <form method="POST" action="{{ url_for('main.delete_order', id=order.id) }}"> 
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

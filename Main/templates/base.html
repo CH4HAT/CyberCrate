@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        </head>
+    <body>
+        <div class="container">
+        <nav>
+            <a href="{{ url_for('main.homepage') }}">Home</a>
+            <a href="{{ url_for('main.get_customers') }}">Customers</a>
+            <a href="{{ url_for('main.get_products') }}">Products</a>
+            <a href="{{ url_for('main.get_orders') }}">Orders</a>
+        </nav>
+        {% block content %}
+        {% endblock %}
+        </div>
+    </body>
+</html>

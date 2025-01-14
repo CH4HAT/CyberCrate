@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - CyberCrate</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='cart_styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    {% extends "index.html" %}
+    {% block content %}
+
+    <!-- Cart items -->
+    <div class="cart">
+        <h2>Your Cart</h2>
+        <div class="cart-items">
+            <!-- Cart items will be dynamically added here -->
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                        <tr>
+                            <td>{{ product.product }}</td>
+                            <td>${{ '%.2f' % product.price }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="cart-total">
+            <h3>Total: $<span id="total">{{ '%.2f' % total }}</span></h3>
+            <button class="checkout-btn">Checkout</button>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+
+</html>

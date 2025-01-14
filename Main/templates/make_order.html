@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product - CyberCrate</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='product1.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+{% extends "index.html" %}
+{% block content %}
+<!-- Product Content -->
+<div class="product-container">
+    <div class="product-images">
+        <img src="{{ url_for('static', filename='/images/product1.jpg') }}" alt="Product Image" class="main-image">
+
+    </div>
+
+    <div class="product-details">
+        <form method="POST" id="order-form" action="{{ url_for('order.add_order', item_name=products.product) }}">
+            <h1>{{ products.product }}</h1>
+            <p class="product-description">Elevate your culinary experience with our brass cookware set, combining timeless elegance with exceptional heat conductivity for precise cooking results and enduring beauty in every dish. Crafted for discerning chefs, this set boasts a luxurious golden hue, ergonomic handles, and versatile pieces for effortless gourmet cooking.</p>
+            <p class="product-price">${{ '%.1f' % products.price }}</p>
+            <div class="quantity">
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1" max="{{ products.available }}" class="quantity-input">
+            </div>
+            <button class="btn btn-add-to-cart">Add to Cart</button>
+        </form>
+        <div class="product-reviews">
+            <h2>Customer Reviews</h2>
+            <div class="review">
+                <p><strong>John Doe</strong> - <span>★★★★★</span></p>
+                <p>This product is amazing! I highly recommend it.</p>
+            </div>
+            <div class="review">
+                <p><strong>Jane Smith</strong> - <span>★★★★☆</span></p>
+                <p>Great product, but there is room for improvement.</p>
+            </div>
+            <!-- Additional reviews as needed -->
+        </div>
+    </div>
+</div>
+{% endblock %}
